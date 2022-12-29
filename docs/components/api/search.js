@@ -49,6 +49,7 @@ export default class ApiSearch extends React.Component {
                 onChange={(selection) => this.handleResultClick(selection)}
                 onInputValueChange={this.handleQuery}
                 itemToString={() => filter}
+                isOpen={true}
             >
                 {(downshiftProps) => {
                     const {

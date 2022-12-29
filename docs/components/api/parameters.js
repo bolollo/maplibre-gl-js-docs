@@ -9,14 +9,10 @@ export default class Parameters extends React.Component {
         return (
             <SectionWrapper title="Parameters" {...this.props}>
                 {section.params.map((param, i) => (
-                    <div key={i} className="mb6">
+                    <div key={i} className="mb-1">
                         <React.Fragment>
-                            <span className="txt-mono txt-bold">
-                                {param.name}
-                            </span>
-                            <code className="color-gray">
-                                ({formatType(param.type)})
-                            </code>
+                            <span className="fw-bolder me-1">{param.name}</span>
+                            <code>({formatType(param.type)})</code>
                             {param.default && (
                                 <span>
                                     {'('}
@@ -27,55 +23,37 @@ export default class Parameters extends React.Component {
                             {toHtml(param.description, true)}
                         </React.Fragment>
                         {param.properties && (
-                            <div className="mt6 mb12 scroll-auto">
-                                <table className="table table--fixed table--compact">
+                            <div className="mt-1 mb12 scroll-auto">
+                                <table className="table table-reference table-bordered rounded-3 overflow-hidden">
                                     <colgroup>
                                         <col width="30%" />
                                         <col width="70%" />
                                     </colgroup>
                                     <thead>
-                                        <tr className="bg-gray-faint">
-                                            <th
-                                                style={{
-                                                    borderTopLeftRadius: '4px'
-                                                }}
-                                            >
-                                                Name
-                                            </th>
-                                            <th
-                                                style={{
-                                                    borderTopRightRadius: '4px'
-                                                }}
-                                            >
-                                                Description
-                                            </th>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {param.properties.map((property, i) => (
                                             <tr key={i}>
-                                                <td>
-                                                    <div className="txt-mono txt-bold txt-break-word">
-                                                        {property.name}
-                                                    </div>
+                                                <th className="text-break">
+                                                    {property.name}
 
-                                                    <code className="inline-block color-gray txt-break-word">
+                                                    <div className="text-break">
                                                         {formatType(
                                                             property.type
                                                         )}
-                                                    </code>
+                                                    </div>
 
                                                     {property.default && (
-                                                        <div className="color-gray txt-break-word">
+                                                        <div className="text-break">
                                                             default:{' '}
-                                                            <code>
-                                                                {
-                                                                    property.default
-                                                                }
-                                                            </code>
+                                                            {property.default}
                                                         </div>
                                                     )}
-                                                </td>
+                                                </th>
                                                 <td
                                                     style={{
                                                         wordBreak: 'break-word'

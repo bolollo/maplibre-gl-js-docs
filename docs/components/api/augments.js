@@ -6,7 +6,7 @@ export default class Augments extends React.Component {
     render() {
         const { section } = this.props;
         return (
-            <div className="mt12">
+            <div className="mt-1 fs-6">
                 Extends{' '}
                 {section.augments.map((tag, i) => (
                     <span

@@ -9,13 +9,9 @@ export default class Properties extends React.Component {
         return (
             <SectionWrapper title="Properties" {...this.props}>
                 {section.properties.map((property, i) => (
-                    <div key={i} className="mb6">
-                        <span className="txt-mono txt-bold mr6">
-                            {property.name}
-                        </span>
-                        <code className="color-gray">
-                            ({formatType(property.type)})
-                        </code>
+                    <div key={i} className="mb-1">
+                        <span className="fw-bolder me-1">{property.name}</span>
+                        <code>({formatType(property.type)})</code>
                         {property.default && (
                             <span>
                                 {'('}

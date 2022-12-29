@@ -36,7 +36,7 @@ export default class MembersList extends React.Component {
 
         return (
             <SectionWrapper title={title} {...this.props}>
-                {members.length > 9 && (
+                {false && members.length > 9 && (
                     <div className="relative">
                         <div className="absolute flex-parent flex-parent--center-cross flex-parent--center-main w36 h36 color-gray">
                             <svg className="icon">

@@ -11,11 +11,8 @@ export default class Title extends React.Component {
         const HeadingLevel = `h${headingLevel}`;
 
         return (
-            <HeadingLevel id={id} className="unprose txt-m mt24 mb3 anchor">
-                <a
-                    className="unprose block color-blue-on-hover txt-bold"
-                    href={`#${id}`}
-                >
+            <HeadingLevel id={id} className="fs-6">
+                <a className="text-secondary mb-1 fw-bold" href={`#${id}`}>
                     {children}
                 </a>
             </HeadingLevel>

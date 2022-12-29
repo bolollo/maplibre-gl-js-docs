@@ -36,7 +36,8 @@ class ApiItemContents extends React.Component {
                     />
                 )}
 
-                {section.kind === 'class' &&
+                {false &&
+                    section.kind === 'class' &&
                     !section.interface &&
                     (!section.constructorComment ||
                         section.constructorComment.access !== 'private') && (

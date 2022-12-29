@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { formatters } from '../../util/formatters';
 import ApiItem from './item';
-import Icon from '@mapbox/mr-ui/icon';
-import classnames from 'classnames';
+//import Icon from '@mapbox/mr-ui/icon';
+//import classnames from 'classnames';
 
 class ApiItemMember extends React.Component {
     constructor(props) {
@@ -16,24 +16,18 @@ class ApiItemMember extends React.Component {
 
     render() {
         const member = this.props;
-
-        const HeadingLevel = `h${this.props.headingLevel}`;
+        console.log(member);
+        //const HeadingLevel = `h${this.props.headingLevel}`;
         return (
             <div
-                className="scroll-margin-top my6 border border--gray-light bg-gray-faint round"
+                className="border rounded-3 my-1 accordion-item"
                 id={member.namespace.toLowerCase()}
                 aria-expanded={this.state.disclosed}
             >
                 <React.Fragment>
-                    <button
-                        className={classnames(
-                            'cursor-pointer w-full color-blue-on-hover px12 py6',
-                            {
-                                'txt-bold': this.state.disclosed
-                            }
-                        )}
+                    <div
+                        className="bg-lighter"
                         onClick={(e) => {
-                            this.setState({ disclosed: !this.state.disclosed });
                             if (history.pushState) {
                                 history.pushState(
                                     null,
@@ -47,53 +41,60 @@ class ApiItemMember extends React.Component {
                             e.preventDefault();
                         }}
                     >
-                        <HeadingLevel
-                            style={{
-                                fontSize: '13px',
-                                lineHeight: '24px',
-                                fontWeight: 'inherit'
-                            }}
-                            className="txt-mono truncate mb0 pt0 inline-block"
+                        <a
+                            role="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target={`#${member.name}`}
+                            aria-expanded="false"
+                            aria-controls="addcontrol"
+                            className="collapsed"
                         >
-                            {member.name}
-                        </HeadingLevel>
-                        {member.kind === 'function' && (
-                            <span
-                                className="txt-mono"
-                                style={{
-                                    color: '#54718f' /* a11y color-gray */
-                                }}
-                                dangerouslySetInnerHTML={{
-                                    __html: `${formatters.parameters(
-                                        member,
-                                        true
-                                    )}`
-                                }}
-                            />
-                        )}
-                        <div className="fr">
-                            <Icon
-                                size={30}
-                                name={
-                                    this.state.disclosed
-                                        ? 'caret-down'
-                                        : 'caret-right'
-                                }
-                                inline={true}
-                            />
-                        </div>
-                    </button>
+                            <span className="p-2 h6 text-secondary d-block m-0">
+                                {member.name}
+                                {member.kind === 'function' && (
+                                    <span
+                                        className="text-dark"
+                                        dangerouslySetInnerHTML={{
+                                            __html: `${formatters.parameters(
+                                                member,
+                                                true
+                                            )}`
+                                        }}
+                                    />
+                                )}
+                                <span className="float-end collapse-arrow">
+                                    {' '}
+                                    <svg
+                                        version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <use href="/styles/style/icon/icon.svg#keyboard_arrow_down"></use>
+                                    </svg>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
                 </React.Fragment>
 
-                {this.state.disclosed && (
-                    <div className="pt12 pb18 px12 border-t border--gray-light round-b item-member bg-white">
-                        <ApiItem
-                            nested={true}
-                            location={this.props.location}
-                            {...member}
-                        />
+                {
+                    <div
+                        id={member.name}
+                        className="collapse"
+                        aria-labelledby="addcontrol"
+                        data-parent="#accordion"
+                    >
+                        <div className="card-body px-2">
+                            <ApiItem
+                                nested={true}
+                                location={this.props.location}
+                                {...member}
+                            />
+                        </div>
                     </div>
-                )}
+                }
             </div>
         );
     }

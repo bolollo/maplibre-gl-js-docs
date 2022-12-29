@@ -9,11 +9,11 @@ export default class SectionHeading extends React.Component {
         return (
             <React.Fragment>
                 <HeadingLevel
-                    className="mt36 mb18 txt-xl unprose anchor"
+                    className="fs-2"
                     id={section.namespace.toLowerCase()}
                 >
                     <a
-                        className="unprose color-blue-on-hover"
+                        className="text-secondary mb-1"
                         href={`#${section.namespace.toLowerCase()}`}
                     >
                         {section.name}
